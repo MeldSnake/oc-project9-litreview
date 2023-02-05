@@ -18,7 +18,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 from listings.views.home import HomeView
 from listings.views.posts import PostsView
-from listings.views.follows import FollowsView, FollowAddNameView, FollowAddIdView, FollowDeleteView
+from listings.views.follows import FollowsView, FollowAddIdView, FollowDeleteView
 from credentials.views import RegisterView
 from django.views.generic import TemplateView
 from django.conf import settings
@@ -88,8 +88,6 @@ urlpatterns = [
         ), name='review-delete'),
 
     # Follows endpoints
-    path('follows/add/', FollowAddNameView.as_view(
-        ), name='follow-add-name'),
     path('follows/<int:userid>/add/', FollowAddIdView.as_view(
         ), name='follow-add'),
     path('follows/<int:userid>/delete/', FollowDeleteView.as_view(

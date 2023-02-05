@@ -5,12 +5,19 @@
 {% block content %}
     <div id="user_search">
         <h2>Follow other users</h2>
-        <form method="post" action="{% url "follow-add-name" %}">
+        <form method="post" action="">
             {% csrf_token %}
             {{ add_follower_form.as_p }}
             {% comment %} <input type="search" name="username" value="" placeholder="username" required /> {% endcomment %}
             <input type="submit" value="Search" />
         </form>
+        {% if form.errors %}
+        <div id="errors">
+            {% for name, reason in form.errors.items %}
+            <p class="Error">{{ reason }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
     <div id="following">
         <h2>Following</h2>
