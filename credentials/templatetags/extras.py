@@ -11,6 +11,16 @@ register = template.Library()
 
 
 @register.filter
+def times(value):
+    return range(value)
+
+
+@register.filter
+def sub(value, second):
+    return value - second
+
+
+@register.filter
 def model_type(value):
     return type(value).__name__
 

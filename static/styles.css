@@ -36,14 +36,15 @@ body {
     cursor: default;
 }
 
-#navbar > .navlink--logout {
+#navbar > .navitem--logout {
     color: white;
     background-color: rgba(255, 0, 0, 0.532);
     border-radius: 0.3em;
     font-weight: bold;
+    margin: 0 0.2em;
 }
 
-#navbar > .navitem.navlink--logout:hover {
+#navbar > .navitem.navitem--logout:hover {
     color: red;
     background-color: white;
 }
@@ -138,6 +139,18 @@ body {
 .review__rating::before {
     content: "Rating : ";
     font-weight: bold;
+}
+.review__rating > .fullstar::before {
+    content: "\2605";
+    color: #e3cf7a;
+    font-style: normal;
+    font-size: 1.5em;
+}
+.review__rating > .emptystar::before {
+    content: "\2606";
+    color: #e3cf7a;
+    font-style: normal;
+    font-size: 1.5em;
 }
 .review__rating--0::after {
     content: "0";

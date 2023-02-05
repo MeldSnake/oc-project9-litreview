@@ -3,9 +3,14 @@
 <div class="review review{% if short_review %}--short{% endif %}">
     <span class="review__user">{% user_case review.user %} created a review</span>
     <span class="review__date">{{ review.time_created|short_date }}</span>
-    {% if review.rating > 0 %}
-    <span class="review__rating rating--{{ review.rating }}">{{ review.rating }}</span>
-    {% endif %}
+    <span class="review__rating">
+        {% for i in review.rating|times %}
+        <i class="fullstar" aria-hidden="true"></i>
+        {% endfor %}
+        {% for i in 5|sub:review.rating|times %}
+        <i class="emptystar" aria-hidden="true"></i>
+        {% endfor %}
+    </span>
     {% if review.headline %}
     <span class="review__headline">{{ review.headline }}</span>
     {% endif %}
