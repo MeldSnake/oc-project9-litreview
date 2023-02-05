@@ -1,0 +1,33 @@
+{% extends "base_logged.html" %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block content %}
+    <div id="user_search">
+        <h2>Follow other users</h2>
+        <form method="post" action="{% url "follow-add-name" %}">
+            {% csrf_token %}
+            {{ add_follower_form.as_p }}
+            {% comment %} <input type="search" name="username" value="" placeholder="username" required /> {% endcomment %}
+            <input type="submit" value="Search" />
+        </form>
+    </div>
+    <div id="following">
+        <h2>Following</h2>
+        {% for user in users_followed %}
+            <div class="user">
+                <span class="username">{{ user.username }}</span>
+                <a class="unsubscribe_button"
+                   href="{% url "follow-delete" user.id %}">Unsubscribe</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="followers">
+        <h2>Followers</h2>
+        {% for user in users_follower %}
+            <div class="user">
+                <span class="username">{{ user.username }}</span>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block navcontent %}
+<a class="navitem navlink" href="{% url "home-user" %}">Flux</a>
+<a class="navitem navlink" href="{% url "post-list" %}">Posts</a>
+<a class="navitem navlink" href="{% url "follow-list" %}">Follows</a>
+<a class="navitem navlink navlink--logout" href="{% url "logout-user" %}">Logout</a>
+{% endblock navcontent %}
+
+{% block content %}{% endblock content %}

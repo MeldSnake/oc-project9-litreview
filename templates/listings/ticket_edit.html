@@ -1,0 +1,15 @@
+{% extends "base_logged.html" %}
+
+{% block title %}{% if ticket %}Edit a{% else %}New{% endif %} ticket{% endblock title %}
+
+{% block content %}
+<div id="ticket--{% if ticket %}edit{% else %}new{% endif %}">
+    <h2>{% if review %}Edit a {% else %}Create a new{% endif %} ticket</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
+    </form>
+</div>
+{% endblock content %}

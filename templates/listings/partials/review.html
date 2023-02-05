@@ -1,0 +1,30 @@
+{% load extras %}
+
+<div class="review review{% if short_review %}--short{% endif %}">
+    <span class="review__user">{% user_case review.user %} created a review</span>
+    <span class="review__date">{{ review.time_created|short_date }}</span>
+    {% if review.rating > 0 %}
+    <span class="review__rating rating--{{ review.rating }}">{{ review.rating }}</span>
+    {% endif %}
+    {% if review.headline %}
+    <span class="review__headline">{{ review.headline }}</span>
+    {% endif %}
+    {% if review.body and not short_review %}
+    <span class="review__body">{{ review.body }}</span>
+    {% endif %}
+    {% if review.ticket %}
+    <div class="review__ticket">
+        {% include "listings/partials/ticket.html" with ticket=review.ticket short_ticket=True %}
+    </div>
+    {% endif %}
+    {% if review.user == user %}
+    <div class="review__actions">
+        <form action="{% url "review-edit" review.id %}" method="get">
+            <input type="submit" value="Edit" />
+        </form>
+        <form action="{% url "review-delete" review.id %}" method="get">
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+    {% endif %}
+</div>

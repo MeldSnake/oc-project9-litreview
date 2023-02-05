@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html5>
+<html lang="en">
+    <head>
+        <title>LITReview - {% block title %}Default Title{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static "styles.css" %}" />
+    </head>
+    <body>
+        <div id="navbar">
+            <span class="navitem navlogo">LITReview</span>
+            {% block navcontent %}{% endblock navcontent %}
+        </div>
+        <div id="content_wrapper">
+            <div id="content">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+    </body>
+</html>

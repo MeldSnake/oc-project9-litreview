@@ -1,0 +1,32 @@
+{% extends "base_logged.html" %}
+
+{% block title %}{% if review %}Edit a{% else %}New{% endif %} review{% endblock title %}
+
+{% block content %}
+<div id="review--{% if ticket %}edit{% else %}new{% endif %}">
+    <h2>{% if review %}Edit a {% else %}Create a new{% endif %} review</h2>
+
+    <form action="{% url 'review-new' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>Ticket</h3>
+        <div class="review__ticket">
+            {% if ticket %}
+            <p>You are answering the following ticket:</p>
+            {% include "listings/partials/ticket.html" with ticket=ticket short_ticket=True %}
+            <input type="hidden" name="ticketid" value="{{ ticket.id }}" />
+            {% else %}
+            {{ form_ticket.as_p }}
+            {% endif %}
+        </div>
+        <h3>Review</h3>
+        <div class="review__review">
+            {{ form.as_p }}
+        </div>
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% endif %}
+        <input type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
+    </form>
+</div>
+
+{% endblock content %}

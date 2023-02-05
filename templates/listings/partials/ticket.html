@@ -1,0 +1,31 @@
+{% load extras %}
+
+<div class="ticket ticket{% if short_ticket %}--short{% endif %}">
+    <span class="ticket__user">{% user_case ticket.user %} asked for a review</span>
+    <span class="ticket__date">{{ ticket.time_created|short_date }}</span>
+    <span class="ticket__title">{{ ticket.title|title }}</span>
+    {% if ticket.description and not short_ticket %}
+        <span class="ticket__description">{{ ticket.description }}</span>
+    {% endif %}
+    {% if ticket.image %}
+        <picture class="ticket__cover">
+            <img class="ticket__cover__image" src="{{ ticket.image.url }}" alt="Cover of {{ ticket.title }} by {{ ticket.author }}" width="100%" height="100%" />
+        </picture>
+    {% endif %}
+    <div class="ticket__actions">
+        {% if not short_ticket %}
+                <form action="{% url "review-new" %}" method="get">
+                    <input type="hidden" name="ticketid" value="{{ ticket.id }}" />
+                    <input type="submit" value="Review" />
+                </form>
+            {% if ticket.user == user %}
+                <form action="{% url "ticket-edit" ticket.id %}" method="get">
+                    <input type="submit" value="Edit" />
+                </form>
+                <form action="{% url "ticket-delete" ticket.id %}" method="get">
+                    <input type="submit" value="Delete" />
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

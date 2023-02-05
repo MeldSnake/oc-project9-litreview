@@ -1,0 +1,16 @@
+{% extends "base_logged.html" %}
+{% load extras %}
+
+{% block title %}Delete {{ object }}{% endblock title %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if object|model_type == 'Ticket' %}
+    <p>Are you sure you want to delete the ticket "{{ object.title }}"?</p>
+    {% else %}
+    <p>Are you sure you want to delete the review "{{ object.headline }}"?</p>
+    {% endif %}
+    <input type="submit" value="Confirm" />
+</form>
+{% endblock content %}

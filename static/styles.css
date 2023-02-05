@@ -1,0 +1,209 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#navbar {
+    background-color: rgb(78, 78, 78);
+    color: rgb(151, 151, 151);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: fit-content;
+    user-select: none;
+}
+
+#navbar > .navitem {
+    color: white;
+    padding: 1em;
+    text-decoration: none;
+}
+
+#navbar > .navitem.navlogo {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: rgb(3, 222, 197);
+}
+
+#navbar > .navitem.navlink:hover {
+    background-color: rgb(0, 127, 112);
+    border-radius: 0.3em;
+    cursor: default;
+}
+
+#navbar > .navlink--logout {
+    color: white;
+    background-color: rgba(255, 0, 0, 0.532);
+    border-radius: 0.3em;
+    font-weight: bold;
+}
+
+#navbar > .navitem.navlink--logout:hover {
+    color: red;
+    background-color: white;
+}
+
+#flux_links {
+    display: flex;
+    justify-content: center;
+    margin: 0.5em 0;
+    justify-content: space-evenly;
+}
+
+#flux_links > * {
+    padding: 1em;
+    margin: 0.2em;
+    border: 0.2em solid rgb(3, 222, 197);
+    background-color: rgba(3, 222, 197, 0.083);
+    border-radius: 0.3em;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#flux_links > *:hover {
+    background-color: rgb(0, 127, 112);
+    border-color: rgb(3, 222, 197);
+    color: white;
+}
+
+#content_wrapper {
+    overflow-y: auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    width: 70vh;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content > * {
+    border: 0.2em solid rgb(3, 222, 113);
+    border-radius: 0.5em;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.ticket, .review {
+    margin: 0.3em;
+    border: 1px solid rgb(3, 222, 197);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 0.5em;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.ticket > *:not(:first-child) {
+    padding-left: 1em;
+    margin-top: 0.3em;
+}
+
+.review > *:not(:first-child) {
+    padding-left: 1em;
+    margin-top: 0.3em;
+}
+
+.review__ticket {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.ticket__user, .review__user {
+    font-weight: bold;
+}
+
+.ticket__date, .review__date {
+    text-align: right;
+}
+
+.review__rating, .review__body {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.review__rating::before {
+    content: "Rating : ";
+    font-weight: bold;
+}
+.review__rating--0::after {
+    content: "0";
+    font-weight: bold;
+}
+.review__rating--1::after {
+    content: "1";
+    font-weight: bold;
+}
+.review__rating--2::after {
+    content: "2";
+    font-weight: bold;
+}
+.review__rating--3::after {
+    content: "3";
+    font-weight: bold;
+}
+.review__rating--4::after {
+    content: "4";
+    font-weight: bold;
+}
+.review__rating--5::after {
+    content: "5";
+}
+
+.ticket__title::before {
+    content: "Title : ";
+    font-weight: bold;
+}
+.review__headline::before {
+    content: "Headline : ";
+    font-weight: bold;
+}
+
+.review__body::before {
+    content: "Body : ";
+    font-weight: bold;
+}
+
+.ticket__description, .review__decription {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding-left: 2em;
+}
+.ticket__description::before, .review__description::before {
+    content: "Description : ";
+    font-weight: bold;
+}
+
+.ticket__cover {
+    display: flex;
+    margin: 1em;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.ticket__cover .ticket__cover__image {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 20vh;
+}
+
+.review__actions, .ticket__actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.review__actions > form, .ticket__actions > form {
+    margin: 0.1em;
+}
