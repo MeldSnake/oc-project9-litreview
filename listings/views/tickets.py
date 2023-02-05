@@ -42,9 +42,16 @@ class EditTicketView(LoginRequiredMixin, UpdateView):
 
 
 class TicketDeleteView(LoginRequiredMixin, DeleteView):
+    object: Ticket
     model = Ticket
     template_name = "listings/ticket_review_delete.html"
     pk_url_kwarg = "ticketid"
+
+    def form_valid(self, form):
+        image = self.object.image
+        if not any(Ticket.objects.filter(image=image).exclude(pk=self.object.id)):
+            image.delete()
+        return super().form_valid(form)
 
     def get_success_url(self) -> str:
         return lazy_success_url("home-user")

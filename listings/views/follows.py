@@ -50,7 +50,7 @@ class FollowAddIdView(LoginRequiredMixin, RedirectView):
             user_model = get_user_model()
             suser = user_model.objects.filter(pk=userid)
             # Check that user does exists
-            if suser is not None:
+            if suser is not None and suser is not user:
                 # Check if user is already following the requested user.
                 userfollow = user.following.filter(user_id=user.id, followed_user_id=suser.id).first()
                 if userfollow is not None:
