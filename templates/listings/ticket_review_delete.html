@@ -11,6 +11,9 @@
     {% else %}
     <p>Are you sure you want to delete the review "{{ object.headline }}"?</p>
     {% endif %}
-    <input type="submit" value="Confirm" />
+    <div class="deleteform__buttons">
+        <a class="input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
+        <input class="input--confirm" type="submit" value="Confirm" />
+    </div>
 </form>
 {% endblock content %}

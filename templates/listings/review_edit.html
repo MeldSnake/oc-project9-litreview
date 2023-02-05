@@ -6,6 +6,13 @@
 <div id="review--{% if ticket %}edit{% else %}new{% endif %}">
     <h2>{% if review %}Edit a {% else %}Create a new{% endif %} review</h2>
 
+    {% if form.errors %}
+        <div class="errors">
+        {% for key, value in form.errors.items %}
+            {{ value }}
+        {% endfor %}
+        </div>
+    {% endif %}
     <form action="{% url 'review-new' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h3>Ticket</h3>
@@ -25,7 +32,8 @@
         {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
         {% endif %}
-        <input type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
+        <a class="input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
+        <input class="input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
     </form>
 </div>
 

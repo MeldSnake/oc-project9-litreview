@@ -4,7 +4,8 @@
 <a class="navitem navlink" href="{% url "home-user" %}">Flux</a>
 <a class="navitem navlink" href="{% url "post-list" %}">Posts</a>
 <a class="navitem navlink" href="{% url "follow-list" %}">Follows</a>
-<a class="navitem navlink navlink--logout" href="{% url "logout-user" %}">Logout</a>
+<a class="navitem navlink navitem--logout" href="{% url "logout-user" %}">Logout</a>
+<span class="navitem navitem--username">{{ user.username }}</span>
 {% endblock navcontent %}
 
 {% block content %}{% endblock content %}

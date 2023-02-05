@@ -25,10 +25,12 @@
     {% if review.user == user %}
     <div class="review__actions">
         <form action="{% url "review-edit" review.id %}" method="get">
-            <input type="submit" value="Edit" />
+            <input type="hidden" name="back" value="{{ request.path }}" />
+            <input class="input--edit" type="submit" value="&#x1f589;" />
         </form>
         <form action="{% url "review-delete" review.id %}" method="get">
-            <input type="submit" value="Delete" />
+            <input type="hidden" name="back" value="{{ request.path }}" />
+            <input class="input--delete" type="submit" value="&#x1f5d1;" />
         </form>
     </div>
     {% endif %}

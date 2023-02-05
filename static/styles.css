@@ -44,6 +44,12 @@ body {
     margin: 0 0.2em;
 }
 
+#navbar > .navitem:last-child {
+    color: red;
+    right: 1vw;
+    position: absolute;
+}
+
 #navbar > .navitem.navitem--logout:hover {
     color: red;
     background-color: white;
@@ -140,40 +146,17 @@ body {
     content: "Rating : ";
     font-weight: bold;
 }
-.review__rating > .fullstar::before {
-    content: "\2605";
+.review__rating > * {
     color: #e3cf7a;
     font-style: normal;
     font-size: 1.5em;
+    font: "DejaVu Sans", "Arial Unicode MS", sans-serif;
+}
+.review__rating > .fullstar::before {
+    content: "\2605";
 }
 .review__rating > .emptystar::before {
     content: "\2606";
-    color: #e3cf7a;
-    font-style: normal;
-    font-size: 1.5em;
-}
-.review__rating--0::after {
-    content: "0";
-    font-weight: bold;
-}
-.review__rating--1::after {
-    content: "1";
-    font-weight: bold;
-}
-.review__rating--2::after {
-    content: "2";
-    font-weight: bold;
-}
-.review__rating--3::after {
-    content: "3";
-    font-weight: bold;
-}
-.review__rating--4::after {
-    content: "4";
-    font-weight: bold;
-}
-.review__rating--5::after {
-    content: "5";
 }
 
 .ticket__title::before {
@@ -212,11 +195,94 @@ body {
     max-height: 20vh;
 }
 
-.review__actions, .ticket__actions {
+.review__actions,
+.ticket__actions {
     display: flex;
     flex-direction: row;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-content: flex-end;
 }
 
-.review__actions > form, .ticket__actions > form {
+.review__actions > form,
+.ticket__actions > form {
     margin: 0.1em;
+}
+
+.ticket input,
+.review input {
+    font-size: 1.5em;
+    font-weight: bold;
+    border-color: transparent;
+    border-radius: 0.2em;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+.input--delete,
+.input--edit,
+.input--review,
+.input--confirm,
+.input--cancel,
+.input--save {
+    cursor: pointer;
+    font-size: 1.2em;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+    border-width: 0;
+    border-radius: 0.2em;
+    text-decoration: none;
+}
+
+.input--delete:hover,
+.input--edit:hover,
+.input--review:hover,
+.input--confirm:hover,
+.input--cancel:hover,
+.input--save:hover {
+    box-shadow: 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.3);
+}
+
+.input--delete:active,
+.input--edit:active,
+.input--review:active,
+.input--confirm:active,
+.input--cancel:active,
+.input--save:active {
+    box-shadow: inset 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.3);
+}
+
+.input--cancel,
+.input--delete {
+    background-color: red;
+    color: white;
+}
+
+.input--edit {
+    background-color: rgb(0, 153, 255);
+    color: white;
+}
+
+.input--review,
+.input--save,
+.input--confirm {
+    background-color: rgb(16, 215, 69);
+    color: white;
+}
+
+.deleteform__buttons {
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1em;
+}
+
+.input--cancel,
+.input--save,
+.input--confirm {
+    font-weight: bold;
+    border-color: transparent;
+    border-radius: 0.2em;
+    padding: 0.3em 0.4em;
 }
