@@ -146,21 +146,39 @@ body {
     grid-column-start: 1;
     grid-column-end: 3;
 }
+.review__rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 .review__rating::before {
     content: "Rating : ";
     font-weight: bold;
 }
 .review__rating > * {
-    color: #e3cf7a;
+    color: white;
+    background-color: darkorange;
     font-style: normal;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font: "DejaVu Sans", "Arial Unicode MS", sans-serif;
+    width: 1.4em;
+    height: 1.4em;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 1.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 0.03em;
+    margin: 0.05em;
 }
-.review__rating > .fullstar::before {
+.review__rating > .emptystar {
+    background-color: lightgrey;
+}
+.review__rating > *::before {
     content: "\2605";
-}
-.review__rating > .emptystar::before {
-    content: "\2606";
 }
 
 .ticket__title::before {
