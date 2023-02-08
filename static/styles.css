@@ -134,6 +134,10 @@ body {
     font-weight: bold;
 }
 
+.user__link {
+    color: inherit;
+}
+
 .ticket__date, .review__date {
     text-align: right;
 }

@@ -1,7 +1,15 @@
 {% load extras %}
 
 <div class="ticket ticket{% if short_ticket %}--short{% endif %}">
+    {% if user.id == ticket.user.id %}
     <span class="ticket__user">{% user_case ticket.user %} asked for a review</span>
+    {% else %}
+    <span class="ticket__user">
+        User
+        <a class="user__link" href="{% url "user-list" ticket.user.id %}">{% user_case ticket.user %}</a>
+        asked for a review
+    </span>
+    {% endif %}
     <span class="ticket__date">{{ ticket.time_created|short_date }}</span>
     <span class="ticket__title">{{ ticket.title|title }}</span>
     {% if ticket.description and not short_ticket %}

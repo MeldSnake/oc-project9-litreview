@@ -1,7 +1,15 @@
 {% load extras %}
 
 <div class="review review{% if short_review %}--short{% endif %}">
+    {% if user.id == review.user.id %}
     <span class="review__user">{% user_case review.user %} created a review</span>
+    {% else %}
+    <span class="review__user">
+        User
+        <a class="user__link" href="{% url "user-list" review.user.id %}">{% user_case review.user %}</a>
+        created a review
+    </span>
+    {% endif %}
     <span class="review__date">{{ review.time_created|short_date }}</span>
     <span class="review__rating">
         {% for i in review.rating|times %}

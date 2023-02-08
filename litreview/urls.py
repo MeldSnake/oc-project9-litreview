@@ -88,6 +88,9 @@ urlpatterns = [
         ), name='review-delete'),
 
     # Follows endpoints
+    path('user/<int:userid>/', PostsView.as_view(
+            current_user=False,
+        ), name='user-list'),
     path('follows/<int:userid>/add/', FollowAddIdView.as_view(
         ), name='follow-add'),
     path('follows/<int:userid>/delete/', FollowDeleteView.as_view(
