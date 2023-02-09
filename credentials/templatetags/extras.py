@@ -45,3 +45,8 @@ def user_case(context, user: AbstractBaseUser | AnonymousUser):
     if request.user == user:
         return "You"
     return user.get_username()
+
+
+@register.filter
+def split(value: str, sep: str | None = None):
+    return value.split(sep)

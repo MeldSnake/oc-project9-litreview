@@ -9,22 +9,18 @@
             {% csrf_token %}
             {{ add_follower_form.as_p }}
             {% comment %} <input type="search" name="username" value="" placeholder="username" required /> {% endcomment %}
-            <input type="submit" value="Search" />
+            <input class="input input--confirm" type="submit" value="Follow" />
         </form>
         {% if form.errors %}
-        <div id="errors">
-            {% for name, reason in form.errors.items %}
-            <p class="Error">{{ reason }}</p>
-            {% endfor %}
-        </div>
+        {% include "partials/errors.html" with errors=form.errors.items %}
         {% endif %}
     </div>
     <div id="following">
         <h2>Following</h2>
         {% for user in users_followed %}
             <div class="user">
-                <span class="username">{{ user.username }}</span>
-                <a class="unsubscribe_button"
+                <span class="username">{{ user.username|capfirst }}</span>
+                <a class="input input--delete"
                    href="{% url "follow-delete" user.id %}">Unsubscribe</a>
             </div>
         {% endfor %}
@@ -33,7 +29,7 @@
         <h2>Followers</h2>
         {% for user in users_follower %}
             <div class="user">
-                <span class="username">{{ user.username }}</span>
+                <a class="username" href="{% url "user-list" user.id %}">{{ user.username }}</a>
             </div>
         {% endfor %}
     </div>

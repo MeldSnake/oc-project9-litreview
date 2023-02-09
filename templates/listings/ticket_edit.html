@@ -16,9 +16,9 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <a class="input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
+        <a class="input input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
         {% comment %} <input class="input--cancel" type="submit" name="cancel" value="Cancel" /> {% endcomment %}
-        <input class="input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
+        <input class="input input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
     </form>
 </div>
 {% endblock content %}

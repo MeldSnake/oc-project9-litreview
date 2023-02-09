@@ -29,6 +29,10 @@ class FollowsView(LoginRequiredMixin, FormView):
             form.add_error("username", "User not found")
         elif suser == user:
             form.add_error("username", "Impossible to add yourself to the list of followers")
+        else:
+            userfollow = UserFollows.objects.filter(user_id=user.id, followed_user_id=suser.id).first()
+            if userfollow is not None:
+                form.add_error("username", f"You are already following the user {suser.get_username().capitalize()}")
         return form
 
     def get_context_data(self, **kwargs):

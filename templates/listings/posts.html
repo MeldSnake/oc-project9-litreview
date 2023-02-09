@@ -4,13 +4,25 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
+    <h2>
+        {% if user_view == user %}
+        List of your tickets and reviews
+        {% else %}
+        List of tickets and reviews by
+        {{ user_view.get_username|capfirst }}
+        {% endif %}
+    </h2>
     <div id="user_posts">
-        {% for post in posts %}
+        {% if posts|length == 0 %}
+            {% include "partials/errors.html" with errors="You currently have no tickets or reviews"|split:"," %}
+        {% else %}
+            {% for post in posts %}
             {% if post|model_type == 'Ticket' %}
-                {% include "listings/partials/ticket.html" with ticket=post %}
+            {% include "listings/partials/ticket.html" with ticket=post %}
             {% elif post|model_type == 'Review' %}
-                {% include "listings/partials/review.html" with review=post %}
+            {% include "listings/partials/review.html" with review=post %}
             {% endif %}
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock content %}

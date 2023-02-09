@@ -32,8 +32,8 @@
         {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
         {% endif %}
-        <a class="input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
-        <input class="input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
+        <a class="input input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
+        <input class="input input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
     </form>
 </div>
 

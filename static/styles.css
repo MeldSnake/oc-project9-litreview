@@ -5,6 +5,13 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-size: 1.3em;
+}
+
+form input {
+    font-size: 1em;
+    margin: 0.2em 0;
+    padding: 0.2em;
 }
 
 #navbar {
@@ -25,15 +32,17 @@ body {
 }
 
 #navbar > .navitem.navlogo {
-    font-size: 1.3em;
     font-weight: bold;
-    color: rgb(3, 222, 197);
+    color: rgba(245, 245, 245, 0.9);
 }
 
 #navbar > .navitem.navlink:hover {
-    background-color: rgb(0, 127, 112);
+    background-color: rgb(0, 153, 255);
     border-radius: 0.3em;
     cursor: default;
+}
+#navbar > .navitem.navlink:active {
+    box-shadow: inset 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
 }
 
 #navbar > .navitem--logout {
@@ -44,8 +53,8 @@ body {
     margin: 0 0.2em;
 }
 
-#navbar > .navitem:last-child {
-    color: red;
+#navbar > .navitem:last-child:not(:first-child) {
+    color: white;
     right: 1vw;
     position: absolute;
 }
@@ -55,60 +64,61 @@ body {
     background-color: white;
 }
 
+#content_wrapper {
+    overflow-y: auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#content {
+    min-width: 70vh;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+#content > * {
+    /* border: 0.2em solid rgb(3, 222, 113); */
+    /* border-radius: 0.5em; */
+    margin: 0.5em 0;
+    /* padding: 0.5em; */
+    /* flex-grow: 1; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content > .user_posts {
+}
+
 #flux_links {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     margin: 0.5em 0;
     justify-content: space-evenly;
 }
 
 #flux_links > * {
-    padding: 1em;
-    margin: 0.2em;
-    border: 0.2em solid rgb(3, 222, 197);
-    background-color: rgba(3, 222, 197, 0.083);
-    border-radius: 0.3em;
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
+    width: 45%;
+    text-align: center;
 }
 
-#flux_links > *:hover {
-    background-color: rgb(0, 127, 112);
-    border-color: rgb(3, 222, 197);
-    color: white;
-}
-
-#content_wrapper {
-    overflow-y: auto;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-#content {
-    width: 70vh;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#content > * {
-    border: 0.2em solid rgb(3, 222, 113);
-    border-radius: 0.5em;
-    margin: 0.5em 0;
-    padding: 0.5em;
-    flex-grow: 1;
-    width: 100%;
+#user_posts,
+#flux_posts {
+    display: block;
 }
 
 .ticket, .review {
-    margin: 0.3em;
-    border: 1px solid rgb(3, 222, 197);
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 0.5em;
-    padding: 1em;
+    /* margin: 0.3em; */
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 0.3em;
+    /* padding: 1em; */
     margin: 0.5em;
 
     display: grid;
@@ -125,12 +135,28 @@ body {
     margin-top: 0.3em;
 }
 
+.ticket > *:nth-child(1),
+.ticket > *:nth-child(2),
+.review > *:nth-child(1),
+.review > *:nth-child(2) {
+    padding: 0.4em;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-width: 0 0 1px 0;
+    color: #484848;
+}
+
 .review__ticket {
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
 .ticket__user, .review__user {
+    font-weight: bold;
+}
+
+.user .username {
     font-weight: bold;
 }
 
@@ -160,7 +186,6 @@ body {
     color: white;
     background-color: darkorange;
     font-style: normal;
-    font-size: 1.2em;
     font: "DejaVu Sans", "Arial Unicode MS", sans-serif;
     width: 1.4em;
     height: 1.4em;
@@ -190,19 +215,11 @@ body {
     font-weight: bold;
 }
 
-.review__body::before {
-    content: "Body : ";
-    font-weight: bold;
-}
 
-.ticket__description, .review__decription {
+.ticket__description, .review__description {
     grid-column-start: 1;
     grid-column-end: 3;
     padding-left: 2em;
-}
-.ticket__description::before, .review__description::before {
-    content: "Description : ";
-    font-weight: bold;
 }
 
 .ticket__cover {
@@ -226,14 +243,23 @@ body {
     justify-content: flex-end;
 }
 
+.review__actions .input,
+.ticket__actions .input {
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: row;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-content: flex-end;
+}
+
 .review__actions > form,
 .ticket__actions > form {
-    margin: 0.1em;
+    margin: 0.3em;
 }
 
 .ticket input,
 .review input {
-    font-size: 1.5em;
     font-weight: bold;
     border-color: transparent;
     border-radius: 0.2em;
@@ -243,36 +269,33 @@ input:hover {
     cursor: pointer;
 }
 
-.input--delete,
-.input--edit,
-.input--review,
-.input--confirm,
-.input--cancel,
-.input--save {
+input[type="submit"][value="Register"],
+input[type="submit"][value="login"],
+.button,
+.input {
     cursor: pointer;
-    font-size: 1.2em;
-    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
+    box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
     border-width: 0;
     border-radius: 0.2em;
     text-decoration: none;
+    padding: 0.3em 0.4em;
+    font-weight: bold;
+    border-color: transparent;
+    text-align: center;
 }
 
-.input--delete:hover,
-.input--edit:hover,
-.input--review:hover,
-.input--confirm:hover,
-.input--cancel:hover,
-.input--save:hover {
-    box-shadow: 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.3);
+input[type="submit"][value="Register"]:hover,
+input[type="submit"][value="login"]:hover,
+.button:hover,
+.input:hover {
+    box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.3);
 }
 
-.input--delete:active,
-.input--edit:active,
-.input--review:active,
-.input--confirm:active,
-.input--cancel:active,
-.input--save:active {
-    box-shadow: inset 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.3);
+input[type="submit"][value="Register"]:active,
+input[type="submit"][value="login"]:active,
+.button:active,
+.input:active {
+    box-shadow: inset 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
 }
 
 .input--cancel,
@@ -281,11 +304,14 @@ input:hover {
     color: white;
 }
 
+.button--create,
 .input--edit {
     background-color: rgb(0, 153, 255);
     color: white;
 }
 
+input[type="submit"][value="Register"],
+input[type="submit"][value="login"],
 .input--review,
 .input--save,
 .input--confirm {
@@ -300,11 +326,133 @@ input:hover {
     column-gap: 1em;
 }
 
-.input--cancel,
-.input--save,
-.input--confirm {
+#errors {
+    /* border-style: groove;
+    border-width: 2px;;
+    border-color: red;
+    border-radius: 1em; */
     font-weight: bold;
-    border-color: transparent;
+    flex: 0 1;
+    display: flex;
+    margin: 0.2em 0;
+}
+
+#errors .error__category {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: rgb(190, 0, 0);
+    border-radius: 0.3em;
+    flex-direction: column;
+}
+
+#errors .error__category > * {
+    padding: 0.4em;
+}
+
+#errors .error__name {
+    background-color: rgba(110, 0, 0, 0.532);;
+    color: whitesmoke;
+    border-radius: 0.2em 0.2em 0 0;
+}
+
+#errors .error__name::after {
+    content: " :";
+}
+
+#errors .error {
+    display: flex;
+    flex: 1 0;
+    padding-left: 1em;
+}
+
+#errors .error__reason {
+    border-radius: 1em;
+    margin: 0.2em;
+    color: white;
+}
+#errors .error__reason::before {
+    content: "* ";
+}
+
+h2 {
+    background-color: rgba(0, 153, 255, 1);
+    color: white;
+    font-weight: bold;
+
+    width: 100%;
+    text-align: center;
+    padding: 0.8em;
     border-radius: 0.2em;
-    padding: 0.3em 0.4em;
+}
+
+#user_search form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#user_search form > * {
+    margin: 0 0.1em;
+}
+
+#user_search .helptext {
+    display: none;
+}
+
+#connexion,
+#registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid grey;
+    min-height: 20vh;
+    border-radius: 0.4em;
+}
+
+#connexion h2,
+#registration h2 {
+    padding: 0.8em 0;
+    margin-top: 0;
+    border-radius: 0.2em 0.2em 0 0;
+}
+
+#connexion form,
+#registration form {
+    display: grid;
+    grid-gap: 0.2em 1em;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    margin: 1em;
+}
+
+#connexion br,
+#registration br {
+    display: none;
+}
+
+#connexion h2,
+#registration h2,
+#connexion .helptext,
+#registration .helptext {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#connexion form label,
+#registration form label {
+    font-weight: bold;
+}
+
+#connexion form .helptext,
+#registration form .helptext {
+    padding-left: 2em;
+    color: rgb(188, 0, 0);
+    margin: 0.2em 0;
 }

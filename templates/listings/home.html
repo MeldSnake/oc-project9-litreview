@@ -5,8 +5,8 @@
 
 {% block content %}
 <div id="flux_links">
-    <a href="{% url "ticket-new" %}">Request a review</a>
-    <a href="{% url "review-new" %}">Create a review</a>
+    <a class="button button--create" href="{% url "ticket-new" %}">Request a review</a>
+    <a class="button button--create" href="{% url "review-new" %}">Create a review</a>
 </div>
 <div id="flux_posts">
     {% for post in posts %}

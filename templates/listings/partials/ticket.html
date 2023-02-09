@@ -24,14 +24,14 @@
         {% if not short_ticket %}
                 <form action="{% url "review-new" %}" method="get">
                     <input type="hidden" name="ticketid" value="{{ ticket.id }}" />
-                    <input class="input--review" type="submit" value="&#x1f441;" />
+                    <input class="input input--review" type="submit" value="&#x1f441;" />
                 </form>
             {% if ticket.user == user %}
                 <form action="{% url "ticket-edit" ticket.id %}" method="get">
-                    <input class="input--edit" type="submit" value="&#x1f589;" />
+                    <input class="input input--edit" type="submit" value="&#x1f589;" />
                 </form>
                 <form action="{% url "ticket-delete" ticket.id %}" method="get">
-                    <input class="input--delete" type="submit" value="&#x1f5d1;" />
+                    <input class="input input--delete" type="submit" value="&#x1f5d1;" />
                 </form>
             {% endif %}
         {% endif %}

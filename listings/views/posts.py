@@ -18,6 +18,7 @@ class PostsView(LoginRequiredMixin, TemplateView):
             user_model = get_user_model()
             user = user_model.objects.get(pk=self.kwargs["userid"])
             context["title"] = f"{user.get_username()} posts"
+        context["user_view"] = user
         context["posts"] = sorted(
             chain(
                 Review.objects.order_by('-time_created').filter(user_id=user.id),

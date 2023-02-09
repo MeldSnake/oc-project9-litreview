@@ -1,0 +1,26 @@
+{% load extras %}
+
+<div id="errors">
+    {% if errors|model_type == "list" %}
+    {% for reason in errors %}
+    <div class="error__category">
+        <span class="error">
+            <span class="error__reason">{{ reason }}</span>
+        </span>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for name, reasons in errors %}
+    <div class="error__category">
+        {% if name != "__all__" %}
+        <span class="error__name">{{ name|capfirst }}</span>
+        {% endif %}
+        {% for reason in reasons %}
+        <span class="error">
+            <span class="error__reason">{{ reason }}</span>
+        </span>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
