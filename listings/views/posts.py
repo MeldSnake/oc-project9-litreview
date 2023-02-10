@@ -21,8 +21,8 @@ class PostsView(LoginRequiredMixin, TemplateView):
         context["user_view"] = user
         context["posts"] = sorted(
             chain(
-                Review.objects.order_by('-time_created').filter(user_id=user.id),
                 Ticket.objects.order_by('-time_created').filter(user_id=user.id),
+                Review.objects.filter(ticket__user_id=user.id).order_by("-time_created"),
             ),
             key=lambda x: x.time_created,
             reverse=True
