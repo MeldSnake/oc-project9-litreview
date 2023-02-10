@@ -4,8 +4,9 @@
 {% block title %}Delete {{ object }}{% endblock title %}
 
 {% block content %}
-<form method="post" enctype="multipart/form-data">
+<form id="delete" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <h2 class="redheader">Deleting</h2>
     {% if object|model_type == 'Ticket' %}
     <p>Are you sure you want to delete the ticket "{{ object.title }}"?</p>
     {% else %}

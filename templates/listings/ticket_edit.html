@@ -3,19 +3,15 @@
 {% block title %}{% if ticket %}Edit a{% else %}New{% endif %} ticket{% endblock title %}
 
 {% block content %}
-<div id="ticket--{% if ticket %}edit{% else %}new{% endif %}">
+<div id="ticket_edit">
     <h2>{% if review %}Edit a {% else %}Create a new{% endif %} ticket</h2>
 
     {% if form.errors %}
-        <div class="errors">
-        {% for key, value in form.errors.items %}
-            {{ value }}
-        {% endfor %}
-        </div>
+        {% include "partial/errors.html" with errors=form.errors.items %}
     {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         <a class="input input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
         {% comment %} <input class="input--cancel" type="submit" name="cancel" value="Cancel" /> {% endcomment %}
         <input class="input input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
