@@ -24,13 +24,20 @@ class NewReviewView(LoginRequiredMixin, CreateView):
         return context
 
     def post(self, request, *args: str, **kwargs):
-        return super().post(request, *args, **kwargs)
+        form_review = self.get_form()
+        if "ticketid" in request.POST:
+            form_ticket = None
+        else:
+            form_ticket = TicketEditForm(data=self.request.POST, files=self.request.FILES)
+        if all([form_review.is_valid(), form_ticket is None or form_ticket.is_valid()]):
+            return self.form_valid(form_review, form_ticket)
+        else:
+            return self.form_invalid(form_review)
 
-    def form_valid(self, form):
-        if "ticketid" in self.request.POST:
+    def form_valid(self, form, form_ticket=None):
+        if form_ticket is None:
             ticket = Ticket.objects.get(pk=int(self.request.POST["ticketid"]))
         else:
-            form_ticket = TicketEditForm(data=self.request.POST)
             ticket = form_ticket.save(commit=False)
             ticket.user = get_user(self.request)
         data = form.save(commit=False)
