@@ -12,13 +12,13 @@
     {% endif %}
     <span class="ticket__date">{{ ticket.time_created|short_date }}</span>
     <span class="ticket__title">{{ ticket.title|title }}</span>
-    {% if ticket.description and not short_ticket %}
-        <span class="ticket__description">{{ ticket.description }}</span>
-    {% endif %}
     {% if ticket.image %}
-        <picture class="ticket__cover">
-            <img class="ticket__cover__image" src="{{ ticket.image.url }}" alt="Cover of {{ ticket.title }} by {{ ticket.author }}" width="100%" height="100%" />
-        </picture>
+    <picture class="ticket__cover">
+        <img class="ticket__cover__image" src="{{ ticket.image.url }}" alt="Cover of {{ ticket.title }} by {{ ticket.author }}" width="100%" height="100%" />
+    </picture>
+    {% endif %}
+    {% if ticket.description and not short_ticket %}
+    <span class="ticket__description">{{ ticket.description }}</span>
     {% endif %}
     <div class="ticket__actions">
         {% if not short_ticket %}
