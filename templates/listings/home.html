@@ -9,12 +9,23 @@
     <a class="button button--create" href="{% url "review-new" %}">Create a review</a>
 </div>
 <div id="flux_posts">
-    {% for post in posts %}
+    {% for post in page.object_list %}
         {% if post|model_type == 'Ticket' %}
             {% include "listings/partials/ticket.html" with ticket=post %}
         {% elif post|model_type == 'Review' %}
             {% include "listings/partials/review.html" with review=post %}
         {% endif %}
     {% endfor %}
+</div>
+<div id="pagination">
+    {% if page_prev_url is not None %}
+    <a class="input input--edit pagination__first" href="{{ page_first_url }}">&lt;&lt;</a>
+    <a class="input input--edit pagination__previous" href="{{ page_prev_url }}">&lt;</a>
+    {% endif %}
+    <span class="pagination__index">Page {{ page.number }}/{{ page_count }}</span>
+    {% if page_next_url is not None %}
+    <a class="input input--edit pagination__next" href="{{ page_next_url }}">&gt;</a>
+    <a class="input input--edit pagination__last" href="{{ page_last_url }}">&gt;&gt;</a>
+    {% endif %}
 </div>
 {% endblock content %}

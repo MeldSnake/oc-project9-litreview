@@ -65,11 +65,21 @@ urlpatterns = [
 
     # Main pages endpoints
     path('', HomeView.as_view(
+            page_url="home-user-page",
+            limit=5,
         ), name='home-user'),
+    path('<int:page>/', HomeView.as_view(
+            page_url="home-user-page",
+            limit=5,
+        ), name='home-user-page'),
     path('follows/', FollowsView.as_view(
         ), name='follow-list'),
     path('posts/', PostsView.as_view(
+            page_url="post-list-page",
         ), name='post-list'),
+    path('posts/<int:page>/', PostsView.as_view(
+            page_url="post-list-page",
+        ), name='post-list-page'),
 
     # Tickets endpoints
     path('tickets/new/', NewTicketView.as_view(
@@ -88,9 +98,16 @@ urlpatterns = [
         ), name='review-delete'),
 
     # Follows endpoints
-    path('user/<int:userid>/', PostsView.as_view(
+    path('user/<int:userid>/posts/', PostsView.as_view(
             current_user=False,
+            page_url="user-list-page",
+            limit=5,
         ), name='user-list'),
+    path('user/<int:userid>/posts/<int:page>/', PostsView.as_view(
+            current_user=False,
+            page_url="user-list-page",
+            limit=5,
+        ), name='user-list-page'),
     path('follows/<int:userid>/add/', FollowAddIdView.as_view(
         ), name='follow-add'),
     path('follows/<int:userid>/delete/', FollowDeleteView.as_view(
