@@ -1,0 +1,23 @@
+<p class="file-upload">
+{% if widget.is_initial %}
+    <picture class="ticket__cover">
+        <img class="ticket__cover__image" src="{{ widget.value.url }}" alt="Cover"/>
+    </picture>
+    {% if not widget.required %}
+    <span class="clearable-file-input">
+        <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+        <input type="checkbox"
+                name="{{ widget.checkbox_name }}"
+                id="{{ widget.checkbox_id }}"
+                {% if widget.attrs.disabled %} disabled{% endif %} />
+    </span>
+    {% endif %}
+    <br />
+    {{ widget.input_text }}:
+{% endif %}
+
+    <input type="{{ widget.type }}"
+            name="{{ widget.name }}"
+            {% include "django/forms/widgets/attrs.html" %} />
+
+</p>

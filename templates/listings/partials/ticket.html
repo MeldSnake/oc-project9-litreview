@@ -17,9 +17,10 @@
         <img class="ticket__cover__image" src="{{ ticket.image.url }}" alt="Cover of {{ ticket.title }} by {{ ticket.author }}" width="100%" height="100%" />
     </picture>
     {% endif %}
-    {% if ticket.description and not short_ticket %}
+    {% if ticket.description %}
     <span class="ticket__description">{{ ticket.description }}</span>
     {% endif %}
+    {% if not short_ticket %}
     <div class="ticket__actions">
         {% if not short_ticket %}
                 <form action="{% url "review-new" %}" method="get">
@@ -36,4 +37,5 @@
             {% endif %}
         {% endif %}
     </div>
+    {% endif %}
 </div>

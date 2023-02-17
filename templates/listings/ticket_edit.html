@@ -1,10 +1,10 @@
 {% extends "base_logged.html" %}
 
-{% block title %}{% if ticket %}Edit a{% else %}New{% endif %} ticket{% endblock title %}
+{% block title %}{% if ticket %}Edit a{% else %}New{% endif %} request for a review{% endblock title %}
 
 {% block content %}
 <div id="ticket_edit">
-    <h2>{% if review %}Edit a {% else %}Create a new{% endif %} ticket</h2>
+    <h2>{% if review %}Edit a {% else %}Create a new{% endif %} request for a review</h2>
 
     {% if form.errors %}
         {% include "partial/errors.html" with errors=form.errors.items %}

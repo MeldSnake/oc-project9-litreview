@@ -1,14 +1,15 @@
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     font-size: 1.3em;
 }
 
-form input {
+form input,
+form label {
     font-size: 1em;
     margin: 0.2em 0;
     padding: 0.2em;
@@ -21,7 +22,7 @@ form input {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: fit-content;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -74,41 +75,47 @@ form input {
 
 #content {
     min-width: 60%;
-    align-self: center;
+    /* align-self: center; */
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    padding: 1em;
 }
 
 @media only screen and (max-width: 1300px) {
-    #content {
-        width: 100%;
+    #content > * {
+        width: 95%;
     }    
 }
 
 @media only screen and (min-width: 1300px) {
-    #content {
+    #content > * {
         width: 60%;
     }    
 }
 
 @media only screen and (orientation: portrait) {
-    #content {
-        width: 100%;
+    #content > * {
+        width: 95%;
     }
 }
 
 #content > * {
+    display: block;
     /* border: 0.2em solid rgb(3, 222, 113); */
     /* border-radius: 0.5em; */
     margin: 0.5em 0;
     /* padding: 0.5em; */
     /* flex-grow: 1; */
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 
 #content > .user_posts {
@@ -118,7 +125,8 @@ form input {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 0.5em 0;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     justify-content: space-evenly;
 }
 
@@ -141,14 +149,16 @@ form input {
     margin: 0.5em;
 
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
 }
 
-.ticket > *:not(:first-child) {
-    padding-left: 1em;
-    margin-top: 0.3em;
+.ticket > *,
+.review > * {
+    grid-column-start: 1;
+    grid-column-end: 4;
 }
 
+.ticket > *:not(:first-child),
 .review > *:not(:first-child) {
     padding-left: 1em;
     padding-right: 1em;
@@ -167,13 +177,16 @@ form input {
     color: #484848;
 }
 
-.review__ticket {
+.ticket__user,
+.review__user {
+    font-weight: bold;
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-.ticket__user, .review__user {
-    font-weight: bold;
+.ticket__date,
+.review__date {
+    grid-column-start: 3;
 }
 
 .user .username {
@@ -188,10 +201,6 @@ form input {
     text-align: right;
 }
 
-.review__rating, .review__body {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
 .review__rating {
     display: flex;
     flex-direction: row;
@@ -210,7 +219,6 @@ form input {
     width: 1.4em;
     height: 1.4em;
     text-align: center;
-    vertical-align: middle;
     border-radius: 1.3em;
     display: flex;
     align-items: center;
@@ -236,9 +244,8 @@ form input {
 }
 
 
-.ticket__description, .review__description {
-    grid-column-start: 1;
-    grid-column-end: 3;
+.ticket__description,
+.review__description {
     padding-left: 2em;
 }
 
@@ -263,8 +270,6 @@ form input {
 .ticket__actions {
     display: flex;
     flex-direction: row;
-    grid-column-start: 1;
-    grid-column-end: 3;
     justify-content: flex-end;
 }
 
@@ -273,8 +278,6 @@ form input {
     font-size: 1.3em;
     display: flex;
     flex-direction: row;
-    grid-column-start: 1;
-    grid-column-end: 3;
     justify-content: flex-end;
 }
 
@@ -429,7 +432,7 @@ h2 {
 
     width: 100%;
     text-align: center;
-    padding: 0.8em;
+    padding: 0.8em 0;
     border-radius: 0.2em;
 }
 
@@ -475,11 +478,17 @@ h3 {
     align-content: center;
 
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     border: 1px solid grey;
     min-height: 20vh;
     border-radius: 0.4em;
+}
+
+#review_edit {
 }
 
 #delete h2,
@@ -501,7 +510,7 @@ h3 {
     display: grid;
     grid-gap: 0.2em 1em;
     grid-template-columns: 1fr 3fr;
-    align-items: center;
+    /* align-items: center; */
 
     margin: 1em;
 }
