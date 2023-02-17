@@ -581,3 +581,8 @@ h3 {
 #pagination .pagination__index {
     grid-column: 3;
 }
+
+#id_rating {
+    display: flex;
+    justify-content: space-between;
+}

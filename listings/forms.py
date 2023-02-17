@@ -8,6 +8,9 @@ class ReviewEditForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ("headline", "rating", "body")
+        widgets = {
+            'rating': forms.widgets.RadioSelect(choices=[(x, str(x)) for x in range(0, 6)])
+        }
 
 
 class TicketEditForm(forms.ModelForm):

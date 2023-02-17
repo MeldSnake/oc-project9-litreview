@@ -3,13 +3,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.generic import DeleteView, CreateView, UpdateView
 from lazy import lazy_success_url
-from listings.forms import TicketEditForm
+from listings.forms import ReviewEditForm, TicketEditForm
 from listings.models import Review, Ticket
 
 
 class NewReviewView(LoginRequiredMixin, CreateView):
     model = Review
-    fields = ["headline", "rating", "body"]
+    form_class = ReviewEditForm
     template_name = "listings/review_edit.html"
 
     def get_context_data(self, **kwargs):
@@ -53,7 +53,7 @@ class NewReviewView(LoginRequiredMixin, CreateView):
 
 class EditReviewView(LoginRequiredMixin, UpdateView):
     model = Review
-    fields = ["headline", "rating", "body"]
+    form_class = ReviewEditForm
     template_name = "listings/review_edit.html"
     pk_url_kwarg = "reviewid"
 
@@ -89,9 +89,6 @@ class ReviewDeleteView(LoginRequiredMixin, DeleteView):
         if "cancel" in self.request.POST:
             url = self.get_success_url()
             return HttpResponseRedirect(url)
-        image = self.object.image
-        if not any(Ticket.objects.filter(image=image).exclude(pk=self.object.id)):
-            image.delete()
         return super().form_valid(form)
 
     def get_success_url(self) -> str:
