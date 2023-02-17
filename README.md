@@ -36,9 +36,13 @@ Ils peuvent aussi s'abonner au flux de requetes/commentaires d'autres utilisateu
 
 3. Installer les dependances necessaires au projet
     ```shell
-    > python -m pip install -r requirements.txt
+    (venv)> python -m pip install -r requirements.txt
     ```
-4. Dans le navigateur de votre choix allez à l'address du serveur HTTP http://localhost:8000/
+4. Lancer le serveur
+    ```shell
+    (venv)> python manage.py runserver
+    ```
+5. Dans le navigateur de votre choix allez à l'address du serveur HTTP http://localhost:8000/
 
 ## Connexion
 
