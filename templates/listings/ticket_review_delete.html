@@ -4,17 +4,19 @@
 {% block title %}Delete {{ object }}{% endblock title %}
 
 {% block content %}
-<form id="delete" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+<div id="delete">
     <h2 class="redheader">Deleting</h2>
-    {% if object|model_type == 'Ticket' %}
-    <p>Are you sure you want to delete the ticket "{{ object.title }}"?</p>
-    {% else %}
-    <p>Are you sure you want to delete the review "{{ object.headline }}"?</p>
-    {% endif %}
-    <div class="deleteform__buttons">
-        <a class="input input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
-        <input class="input input--confirm" type="submit" value="Confirm" />
-    </div>
-</form>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if object|model_type == 'Ticket' %}
+        <p>Are you sure you want to delete the ticket "{{ object.title }}"?</p>
+        {% else %}
+        <p>Are you sure you want to delete the review "{{ object.headline }}"?</p>
+        {% endif %}
+        <div class="deleteform__buttons">
+            <a class="input input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
+            <input class="input input--confirm" type="submit" value="Confirm" />
+        </div>
+    </form>
+</div>
 {% endblock content %}
