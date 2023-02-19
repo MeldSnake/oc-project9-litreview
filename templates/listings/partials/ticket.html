@@ -23,17 +23,13 @@
     {% if not short_ticket %}
     <div class="ticket__actions">
         {% if not short_ticket %}
-                <form action="{% url "review-new" %}" method="get">
-                    <input type="hidden" name="ticketid" value="{{ ticket.id }}" />
-                    <input class="input input--review" type="submit" value="&#x1f441;" />
-                </form>
+            <form action="{% url "review-new" %}" method="get">
+                <input type="hidden" name="ticketid" value="{{ ticket.id }}" />
+                <input class="input input--review" type="submit" value="&#x1f441;" />
+            </form>
             {% if ticket.user == user %}
-                <form action="{% url "ticket-edit" ticket.id %}" method="get">
-                    <input class="input input--edit" type="submit" value="&#x1f589;" />
-                </form>
-                <form action="{% url "ticket-delete" ticket.id %}" method="get">
-                    <input class="input input--delete" type="submit" value="&#x1f5d1;" />
-                </form>
+            <a href="{% url "ticket-edit" ticket.id %}" class="input input--edit">&#x1f589;</a>
+            <a href="{% url "ticket-delete" ticket.id %}" class="input input--delete">&#x1f5d1;</a>
             {% endif %}
         {% endif %}
     </div>

@@ -276,10 +276,6 @@ form label {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-}
-
-.review__actions > form,
-.ticket__actions > form {
     margin: 0.3em;
 }
 
@@ -368,6 +364,7 @@ input[type="submit"][value="login"],
     grid-gap: 0.2em 1em;
     margin: 0.2em 0;
     max-width: 50vmin;
+    align-self: center;
 }
 
 #errors .error__category {

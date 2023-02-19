@@ -9,6 +9,10 @@
         </span>
     </div>
     {% endfor %}
+    {% elif errors|model_type == "SafeString" %}
+    <div class="error__category">
+        <span class="error__reason">{{ errors }}</span>
+    </div>
     {% else %}
     {% for name, reasons in errors %}
     <div class="error__category">

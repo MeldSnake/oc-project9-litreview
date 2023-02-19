@@ -32,14 +32,8 @@
     {% endif %}
     {% if review.user == user %}
     <div class="review__actions">
-        <form action="{% url "review-edit" review.id %}" method="get">
-            <input type="hidden" name="back" value="{{ request.path }}" />
-            <input class="input input--edit" type="submit" value="&#x1f589;" />
-        </form>
-        <form action="{% url "review-delete" review.id %}" method="get">
-            <input type="hidden" name="back" value="{{ request.path }}" />
-            <input class="input input--delete" type="submit" value="&#x1f5d1;" />
-        </form>
+        <a href="{% url "review-edit" review.id %}" class="input input--edit">&#x1f589;</a>
+        <a href="{% url "review-delete" review.id %}" class="input input--delete">&#x1f5d1;</a>
     </div>
     {% endif %}
 </div>

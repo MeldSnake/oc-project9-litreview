@@ -59,16 +59,19 @@ class EditReviewView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["ticket"] = self.get_object().ticket
-        if not context["ticket"]:
-            try:
-                ticketid = int(self.request.GET["ticketid"])
-                ticket = Ticket.objects.filter(pk=ticketid).first()
-                context["ticket"] = ticket
-            except Exception:
-                pass
-        context["form_ticket"] = TicketEditForm(data=context["ticket"])
-        context["back"] = self.get_success_url()
+        user = get_user(self.request)
+        review = self.get_object()
+        context["ticket"] = review.ticket
+        context["forbidden"] = user != review.user
+        if context["forbidden"]:
+            if not context["ticket"]:
+                try:
+                    ticketid = int(self.request.GET["ticketid"])
+                    ticket = Ticket.objects.filter(pk=ticketid).first()
+                    context["ticket"] = ticket
+                except Exception:
+                    pass
+            context["form_ticket"] = TicketEditForm(data=context["ticket"])
         return context
 
     def post(self, request, *args, **kwargs):

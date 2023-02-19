@@ -31,9 +31,10 @@ class EditTicketView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = get_user(self.request)
         ticket = Ticket.objects.filter(pk=int(self.kwargs["ticketid"])).first()
         context["ticket"] = ticket
-        context["back"] = self.get_success_url()
+        context["forbidden"] = user != ticket.user
         return context
 
     def post(self, request, *args, **kwargs):

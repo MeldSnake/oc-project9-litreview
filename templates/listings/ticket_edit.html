@@ -5,9 +5,10 @@
 {% block content %}
 <div id="ticket_edit">
     <h2>{% if review %}Edit a {% else %}Create a new{% endif %} request for a review</h2>
-
+    
+    {% if not forbidden %}
     {% if form.errors %}
-        {% include "partial/errors.html" with errors=form.errors.items %}
+        {% include "partials/errors.html" with errors=form.errors.items %}
     {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -16,5 +17,9 @@
         {% comment %} <input class="input--cancel" type="submit" name="cancel" value="Cancel" /> {% endcomment %}
         <input class="input input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
     </form>
+    {% else %}
+    {% include "partials/errors.html" with errors="You do not have the permission to edit this ticket." %}
+    <a class="input input--cancel" href="{% url "home-user" %}">Home</a>
+    {% endif %}
 </div>
 {% endblock content %}

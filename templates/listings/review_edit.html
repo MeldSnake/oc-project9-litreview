@@ -6,8 +6,9 @@
 <div id="review_edit">
     <h2>{% if review %}Edit a {% else %}Create a new{% endif %} review</h2>
 
+    {% if not forbidden %}
     {% if form.errors %}
-        {% include "partial/errors.html" with errors=form.errors.items %}
+        {% include "partials/errors.html" with errors=form.errors.items %}
     {% endif %}
     <form action="{%if not review %}{% url 'review-new' %}{% endif %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -31,6 +32,10 @@
         <a class="input input--cancel" onClick="javascript:history.go(-1);">Cancel</a>
         <input class="input input--save" type="submit" value="{% if ticket %}Save{% else %}Create{% endif %}" />
     </form>
+    {% else %}
+    {% include "partials/errors.html" with errors="You do not have the permission to edit this review." %}
+    <a class="input input--cancel" href="{% url "home-user" %}">Home</a>
+    {% endif %}
 </div>
 
 {% endblock content %}
